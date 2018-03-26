@@ -1,0 +1,72 @@
+<html>
+
+	<head>
+		<title>FM Hint</title>
+		<link rel="stylesheet" href="lib/metro/css/metro-all.min.css">
+		<link rel="stylesheet" href="lib/animate.css">
+		<script src="lib/vex/vex.combined.min.js"></script>
+		<script>vex.defaultOptions.className = 'vex-theme-os'</script>
+		<link rel="stylesheet" href="lib/vex/vex.css" />
+		<link rel="stylesheet" href="lib/vex/vex-theme-os.css" />
+		<script src="lib/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
+		<script src="lib/spectrum/spectrum.js"></script>
+		<link rel="stylesheet" href="lib/spectrum/spectrum.css" />
+		<style>
+
+		.center{
+  			position: absolute;
+  			top: 50%;
+  			left: 50%;
+  			transform: translate(-50%, -50%);
+		}
+		table tr td{
+			border:1px solid black;
+			width:30px;
+			height:30px;
+		}
+		.highlight {
+			background-color:#ccffcc;
+			user-select:none;
+		}
+		*{
+			user-drag:none;
+			user-select:none;
+		}
+		.menuButton{
+			border:1px solid rgba(0,0,0,0.5);
+			background-color: white;
+			padding:5px;
+			cursor: pointer;
+		}
+		.menuButton:active{
+			border:1px solid rgba(0,0,0,0.5);
+			background-color: grey;
+			color:white !important;
+			padding:5px;
+			cursor: pointer;
+		}
+		</style>
+
+	</head>
+	<body>
+
+		<nav data-role="ribbonmenu" class="ribbon-menu" id="fmApp-navBar">
+			<ul class="tabs-holder" id="fmApp-tabHolder">
+			</ul>
+			<div class="content-holder" id="fmApp-contentHolder">
+			</div>
+		</nav>
+
+		<div id="workArea"></div>
+		<center><div data-role="activity" data-type="cycle" data-style="color" id="loader" class="center"></div></center>
+		<script src="lib/vue.js"></script>
+		<script src="lib/metro/js/metro.min.js"></script>
+		<script src="core.js"></script>
+		<script src="menuLoader.js"></script>
+		<!-- INCLUDE NEW APP FILES HERE -->
+		<script src="applets/box.js"></script>
+		<script src="applets/tableBuilder.js"></script>
+		<script src="applets/tableColors.js"></script>
+	</body>
+
+</html>
