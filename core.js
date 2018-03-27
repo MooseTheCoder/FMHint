@@ -21,7 +21,7 @@ function pageInit(){
 	$('#'+tabHolderId+'>li:first-child a').click();
 	$('#'+navBarId).hide();
 	var rand = Math.floor(Math.random() * 101);
-	if(rand < 0){
+	if(rand < 70){
 		$('#loader').html(loader);
 	}else{
 		$('#loader').html('<img src="o/hds.png" style="height:90px;" class="animated hinge"/>');
