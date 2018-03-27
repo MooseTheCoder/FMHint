@@ -15,4 +15,3 @@ function boxMaker(){
         $('#end').val(boxTextVal);
         $('#boxe').html('<center><div style="color:'+color+'; background-color:'+backgroundColor+'; font-size:'+fontSize+'px;">'+text+'</div></center>');
 }
-
