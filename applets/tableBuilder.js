@@ -4,7 +4,18 @@ $(document).ready(function(){
 var tableBuilder_tableSelectionArray=[];
 var tableBuilder_tableCanDraw = false;
 function tableBuilder(){
-        $('#workArea').append('<div style="border:1px solid black;" id="tableBuilder" data-role="window" data-title="Table Builder" data-drag-area="html" data-resizable="false" data-btn-max="false"><input type="text" id="tableBuilder_tableRows" placeholder="Rows" /><input type="text" id="tableBuilder_tableCols" placeholder="Cols" /><button onclick="tableBuilder_build()" class="menuButton"><span class="mif-pencil mif-2x fg-black"></span></button><button onclick="tableBuilder_tableMerge(\'colspan\')" class="menuButton"><span class="mif-arrow-left mif-2x fg-black"></span><span class="mif-arrow-right mif-2x fg-black"></span></button><button onclick="tableBuilder_tableMerge(\'rowspan\')" class="menuButton"><span class="mif-arrow-down mif-2x fg-black"></span></button><button onclick="tableBuilder_reset()" class="menuButton"><span class="mif-cancel mif-2x fg-black"></span></button><br /><br /><center><div id="tableBuilder_table" style="width:650px; height:650px;"></div></center><textarea id="tableBuilder_tableFinalSource"></textarea></div>');
+        $('#workArea').append('<div style="border:1px solid black;" id="tableBuilder" data-role="window" data-title="Table Builder" data-drag-area="html" data-resizable="false" data-btn-max="false">'
+		+'<input type="text" id="tableBuilder_tableRows" placeholder="Rows" />'
+		+'<input type="text" id="tableBuilder_tableCols" placeholder="Cols" />'
+		+'<button onclick="tableBuilder_build()" class="menuButton"><span class="mif-pencil mif-2x fg-black"></span></button>'
+		+'<button onclick="tableBuilder_tableMerge(\'colspan\')" class="menuButton"><span class="mif-arrow-left mif-2x fg-black"></span><span class="mif-arrow-right mif-2x fg-black"></span></button>'
+		+'<button onclick="tableBuilder_tableMerge(\'rowspan\')" class="menuButton"><span class="mif-arrow-down mif-2x fg-black"></span></button>'
+		+'<button onclick="tableBuilder_reset()" class="menuButton"><span class="mif-cancel mif-2x fg-black"></span></button>'
+		+'<button class="menuButton" onclick="tableBuilder_cellTextAlign(\'left\')"><span class="mif-paragraph-left mif-2x gf-black"></span></button>'
+		+'<button class="menuButton" onclick="tableBuilder_cellTextAlign(\'center\')"><span class="mif-paragraph-center mif-2x gf-black"></span></button>'
+		+'<button class="menuButton" onclick="tableBuilder_cellTextAlign(\'right\')"><span class="mif-paragraph-right mif-2x gf-black"></span></button>'
+		+'<br /><br /><center><div id="tableBuilder_table" style="width:650px; height:650px;"></div></center>'
+		+'<textarea id="tableBuilder_tableFinalSource"></textarea></div>');
 }
 function tableBuilder_updateFinalSource(){
         $('#tableBuilder_tableFinalSource').text($('#tableBuilder_table').html());
@@ -20,7 +31,7 @@ function tableBuilder_reset(){
 function renderGrid(r,c){
         var currentRow = 0;
         var currentCol = 0;
-        var tableString = '<table border="1" style="width:500px; height:500px;" cellspacing="0">';
+        var tableString = '<table border="1" style="width:500px;" cellspacing="0">';
         while(currentRow < r){
                 tableString+='<tr>';
                         while(currentCol < c){
@@ -45,6 +56,13 @@ function tableBuilder_tableMerge(type){
         $('#tableBuilder #'+mainEl).css('background-color','rgba(0,0,0,0)');
         tableBuilder_tableSelectionArray=[];
         tableBuilder_updateFinalSource();
+}
+function tableBuilder_cellTextAlign(align){
+	$.each(tableBuilder_tableSelectionArray,function(key){
+		$('#tableBuilder #'+tableBuilder_tableSelectionArray[key]).css('text-align',align);
+	});
+	tableBuilder_tableSelectionArray=[];
+	tableBuilder_updateFinalSource();
 }
 $(document).on('mousedown','#tableBuilder',function(){
         tableBuilder_tableCanDraw = true;
