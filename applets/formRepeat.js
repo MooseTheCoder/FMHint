@@ -12,7 +12,7 @@ function formRepeat_render(){
 }
 $(document).on('mousedown','#formRepeat_Window #formRepeat_render *',function(){
 	var elementId = $(this)[0].id;
-	$('#'+elementId).html('{{FIELD '+formRepeat_AIVal+' }}');
+	$('#formRepeat_Window #'+elementId).html('{{FIELD '+formRepeat_AIVal+' }}');
 	formRepeat_AIVal++;
 	formRepeat_out();
 });
