@@ -3,11 +3,13 @@ $(document).ready(function(){
 });
 var tableBuilder_tableSelectionArray=[];
 var tableBuilder_tableCanDraw = false;
+var tableBuilder_lastAction = "";
 function tableBuilder(){
         $('#workArea').append('<div style="border:1px solid black;" id="tableBuilder" data-role="window" data-title="Table Builder" data-drag-area="html" data-resizable="false" data-btn-max="false">'
 		+'<input type="text" id="tableBuilder_tableRows" placeholder="Rows" />'
 		+'<input type="text" id="tableBuilder_tableCols" placeholder="Cols" />'
 		+'<button onclick="tableBuilder_build()" class="menuButton"><span class="mif-pencil mif-2x fg-black"></span></button>'
+		+'<button onclick="tableBuilder_undo()" class="menuButton"><span class="mif-undo mif-2x fg-black"></span></button>'
 		+'<button onclick="tableBuilder_tableMerge(\'colspan\')" class="menuButton"><span class="mif-arrow-left mif-2x fg-black"></span><span class="mif-arrow-right mif-2x fg-black"></span></button>'
 		+'<button onclick="tableBuilder_tableMerge(\'rowspan\')" class="menuButton"><span class="mif-arrow-down mif-2x fg-black"></span></button>'
 		+'<button onclick="tableBuilder_reset()" class="menuButton"><span class="mif-cancel mif-2x fg-black"></span></button>'
@@ -17,6 +19,11 @@ function tableBuilder(){
 		+'<br /><br /><center><div id="tableBuilder_table" style="width:650px; height:650px;"></div></center>'
 		+'<textarea id="tableBuilder_tableFinalSource"></textarea></div>');
 }
+
+function tableBuilder_undo(){
+	$('#tableBuilder_table').html(tableBuilder_lastAction);
+}
+
 function tableBuilder_updateFinalSource(){
         $('#tableBuilder_tableFinalSource').text($('#tableBuilder_table').html());
 }
@@ -46,6 +53,7 @@ function renderGrid(r,c){
         return tableString;
 }
 function tableBuilder_tableMerge(type){
+	tableBuilder_lastAction = $('#tableBuilder_table').html();
         var mainEl = tableBuilder_tableSelectionArray[0];
         var spanSize = tableBuilder_tableSelectionArray.length;
         tableBuilder_tableSelectionArray.splice(0,1);
@@ -85,6 +93,7 @@ $(document).on('mouseleave','#tableBuilder #tableBuilder_table table td',functio
         }
 });
 $(document).on('dblclick','#tableBuilder #tableBuilder_table table td',function(){
+	tableBuilder_lastAction = $('#tableBuilder_table').html();
 	var elId = $(this).attr('id');
 	vex.dialog.prompt({
 		message: 'Cell Value',

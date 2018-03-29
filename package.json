@@ -1,6 +1,6 @@
 {
   "name": "fmhint",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description" : "A simple toolkit used for creating the complex stuff in fieldmotion",
   "main": "main.js",
   "scripts": {
