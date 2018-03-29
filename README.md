@@ -12,4 +12,3 @@ Vex
 jQuery
 
 Vue
-
